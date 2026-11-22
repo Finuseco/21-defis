@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — 21 Défis</title><meta name="description" content="Contactez 21 Défis.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="contact">
+<header id="site-header"></header>
+<main>
+<section class="hero small"><div class="container"><h1 data-i18n="c.h1">Contact</h1><p class="lead" data-i18n="c.lead">Une question, une proposition ? Écrivez-nous.</p></div></section>
+<section class="section"><div class="container"><div class="grid g2">
+ <div class="card"><div class="ico"><i class="fa-regular fa-envelope"></i></div><h3>E-mail</h3><p><a id="mail-link" href="#"></a></p></div>
+ <div class="card"><div class="ico"><i class="fa-solid fa-user-plus"></i></div><h3 data-i18n="c.j">Adhésion</h3><p><a href="adhesion.html" style="color:var(--accent);font-weight:700" data-i18n="c.jl">Remplir le formulaire d'adhésion</a></p></div>
+</div></div></section>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>I18N.extend({"c.h1":"Contact","c.lead":"A question, a proposal? Write to us.","c.j":"Membership","c.jl":"Fill in the membership form"});const m=document.getElementById("mail-link");m.href="mailto:"+DEFIS.EMAIL;m.textContent=DEFIS.EMAIL;</script>
+</body></html>
