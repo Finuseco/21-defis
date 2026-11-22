@@ -1,0 +1,1 @@
+const PROVINCES='Kinshasa|Kongo Central|Kwango|Kwilu|Mai-Ndombe|Équateur|Tshuapa|Mongala|Nord-Ubangi|Sud-Ubangi|Haut-Uélé|Bas-Uélé|Ituri|Tshopo|Haut-Lomami|Haut-Katanga|Lualaba|Tanganyika|Maniema|Nord-Kivu|Sud-Kivu|Kasaï|Kasaï Central|Kasaï Oriental|Lomami|Sankuru'.split('|');

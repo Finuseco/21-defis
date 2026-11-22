@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ma carte de membre — Les 21 Défis</title><meta name="description" content="Consultez et imprimez votre carte de membre."><link rel="icon" href="public/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css?v=2"></head>
+<body data-page="card"><header id="site-header"></header><main>
+<section class="hero small"><div class="container"><h1 data-i18n="k.h1">Ma carte de membre</h1><p class="lead" data-i18n="k.lead">Entrez votre numéro de membre et votre e-mail.</p></div></section>
+<section class="section"><div class="container layout-2">
+<form class="form no-print" id="lookup" novalidate><div class="field"><label for="num" data-i18n="k.n">Numéro de membre</label><input id="num" inputmode="numeric" required></div>
+<div class="field"><label for="em" data-i18n="a.em">E-mail</label><input id="em" type="email" required></div>
+<button class="btn btn-red" type="submit" data-i18n="k.go">Afficher ma carte</button><p id="msg" style="margin-top:14px;font-weight:600;color:#b3261e"></p></form>
+<div id="out" style="display:none"><div class="member-card" id="card"><div class="mc-top"><span>LES 21 DÉFIS · RDC</span><img src="public/images/logo.jpg" alt=""></div>
+<div class="mc-num" id="c-num"></div><div class="mc-name" id="c-name"></div><div class="mc-meta" id="c-meta"></div><span class="mc-status" id="c-st"></span></div>
+<p class="no-print" style="margin-top:18px"><button class="btn btn-primary" onclick="window.print()"><i class="fa-solid fa-print"></i> <span data-i18n="k.pr">Imprimer / enregistrer en PDF</span></button></p></div>
+</div></section>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>
+I18N.extend({"k.h1":"My member card","k.lead":"Enter your member number and e-mail.","k.n":"Member number","k.go":"Show my card","k.pr":"Print / save as PDF"});
+const T={membre:["Membre","Member"],sympathisant:["Sympathisant","Supporter"],benevole:["Bénévole","Volunteer"]},S={valide:["Membre validé","Validated"],en_attente:["En attente de validation","Pending"],refuse:["Adhésion refusée","Refused"]};
+const L=I18N.lang==="en"?1:0;
+document.getElementById("lookup").addEventListener("submit",async e=>{e.preventDefault();const msg=document.getElementById("msg");msg.textContent="";
+ try{const r=await fetch("/api/carte",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({numero:document.getElementById("num").value,email:document.getElementById("em").value})});const m=await r.json();if(!r.ok)throw new Error(m.error);
+ const l=I18N.lang==="en"?1:0;document.getElementById("c-num").textContent=m.numero;document.getElementById("c-name").textContent=m.prenom+" "+m.nom;
+ document.getElementById("c-meta").textContent=T[m.type][l]+(m.province?" · "+m.province:"")+(m.valide_le?" · "+new Date(m.valide_le).toLocaleDateString():"");
+ const s=document.getElementById("c-st");s.textContent=S[m.statut][l];s.className="mc-status"+(m.statut==="valide"?" ok":"");document.getElementById("out").style.display="block";
+ }catch(err){msg.textContent=err.message}});
+</script>
+</body></html>

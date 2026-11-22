@@ -1,5 +1,5 @@
 /* 21 Défis — Design system (repris du style CashPay All : bleu nuit + violet) */
-:root{--navy:#190a28;--navy-2:#2a0e42;--navy-3:#59158d;--accent:#7a22d4;--accent-2:#a66be0;--bg:#fff;--bg-soft:#f7f3fb;--text:#2e1841;--muted:#6b3f96;--border:#e6dcf0;--radius:20px;--shadow:0 18px 40px rgba(30,3,53,.08);--ease:cubic-bezier(.2,.7,.2,1)}
+:root{--navy:#0b1a52;--navy-2:#13297a;--navy-3:#1f3a9c;--accent:#ce1126;--accent-2:#f7d618;--blue:#1f3a9c;--bg:#fff;--bg-soft:#f4f6fc;--text:#1c2547;--muted:#4f5b86;--border:#dde2f2;--radius:20px;--shadow:0 18px 40px rgba(11,26,82,.08);--ease:cubic-bezier(.2,.7,.2,1)}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
 body{font-family:'Inter',system-ui,sans-serif;color:var(--text);background:var(--bg);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
@@ -71,3 +71,43 @@ footer h4{color:#fff;margin-bottom:14px;font-size:15px}footer li{margin-bottom:8
 @media(max-width:960px){.g3,.g4,.stats,.foot-grid{grid-template-columns:1fr 1fr}.layout-2,.g2{grid-template-columns:1fr}
 .menu-toggle{display:block}.nav-links{display:none;position:absolute;top:76px;left:0;right:0;background:#fff;flex-direction:column;align-items:stretch;padding:14px 24px;border-bottom:1px solid var(--border)}.nav-links.open{display:flex}}
 @media(max-width:600px){.g3,.g4,.stats,.foot-grid,.form .row,.plans{grid-template-columns:1fr}.section{padding:64px 0}.hero{padding:80px 0 70px}.cta-band{padding:38px 22px}}
+
+/* ---- Couleurs du drapeau RDC : bleu / jaune / rouge ---- */
+.btn-primary{background:var(--accent-2);color:var(--navy);box-shadow:0 10px 24px rgba(247,214,24,.35)}
+.btn-primary:hover{background:#ffe24a}
+.btn-red{background:var(--accent);color:#fff;box-shadow:0 10px 24px rgba(206,17,38,.3)}.btn-red:hover{background:#e0132b}
+.hero{background:linear-gradient(135deg,var(--navy),var(--navy-3))}
+.hero::before{background:radial-gradient(circle,rgba(247,214,24,.28),transparent 70%)}
+.hero::after,#site-header::after{content:"";display:block;height:6px;background:linear-gradient(90deg,var(--blue) 33.3%,var(--accent-2) 33.3% 66.6%,var(--accent) 66.6%)}
+.hero::after{position:absolute;left:0;right:0;bottom:0}
+#site-header::after{height:4px}
+.brand img{height:44px;width:44px;border-radius:50%}
+.nav-links a:hover,.nav-links a.active{color:var(--blue);background:rgba(31,58,156,.08)}
+.card .ico{background:rgba(31,58,156,.1);color:var(--blue)}
+.card:hover{border-color:var(--accent-2)}
+.num{color:var(--accent)}
+.eyebrow{color:var(--accent)}
+.plan:has(input:checked){border-color:var(--blue);background:rgba(31,58,156,.07)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 4px rgba(31,58,156,.14)}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:center}
+.hero-logo{background:#fff;border-radius:50%;padding:14px;width:min(320px,70vw);margin:0 auto;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.provinces{display:flex;flex-wrap:wrap;gap:10px}.provinces span{padding:8px 16px;border-radius:999px;background:#fff;border:1px solid var(--border);font-weight:600;font-size:14px;color:var(--navy)}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.step{position:relative;padding:26px;background:#fff;border:1px solid var(--border);border-radius:var(--radius);border-top:5px solid var(--accent-2)}
+.step:nth-child(2){border-top-color:var(--accent)}.step:nth-child(3){border-top-color:var(--blue)}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--navy);color:#fff;font-weight:900;margin-bottom:12px}
+.step h3{color:var(--navy);margin-bottom:6px;font-size:17px}.step p{color:var(--muted);font-size:14.5px}
+.member-card{max-width:440px;aspect-ratio:1.586;border-radius:22px;padding:22px;color:#fff;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--navy),var(--navy-3));box-shadow:0 30px 60px rgba(11,26,82,.35)}
+.member-card::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:linear-gradient(90deg,var(--blue) 33.3%,var(--accent-2) 33.3% 66.6%,var(--accent) 66.6%)}
+.member-card img{width:56px;height:56px;border-radius:50%;background:#fff;padding:3px}
+.mc-top{display:flex;justify-content:space-between;align-items:center;font-weight:800;font-size:13px;letter-spacing:1px}
+.mc-num{font-size:34px;font-weight:900;letter-spacing:4px;margin-top:26px;color:var(--accent-2);font-variant-numeric:tabular-nums}
+.mc-name{font-size:19px;font-weight:800;margin-top:6px;text-transform:uppercase}.mc-meta{font-size:12.5px;opacity:.85;margin-top:2px}
+.mc-status{position:absolute;right:20px;bottom:26px;padding:5px 12px;border-radius:999px;font-size:11.5px;font-weight:800;background:rgba(255,255,255,.18)}
+.mc-status.ok{background:#1b7a3d}
+table.t{width:100%;border-collapse:collapse;font-size:14px;background:#fff}.t th,.t td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}.t th{background:var(--bg-soft);color:var(--navy)}
+.tablewrap{overflow-x:auto;border:1px solid var(--border);border-radius:14px}
+.btn.sm{padding:6px 14px;font-size:13px}
+@media print{#site-header,footer,.hero,.no-print{display:none!important}.section{padding:20px 0}}
+@media(max-width:960px){.hero-grid,.steps{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.hero-grid,.steps{grid-template-columns:1fr}}

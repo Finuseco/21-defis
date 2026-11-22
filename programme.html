@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Programme — Les 21 Défis</title><meta name="description" content="Comment le gouvernement des 21 Défis organisera le pays."><link rel="icon" href="public/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css?v=2"></head>
+<body data-page="prog"><header id="site-header"></header><main>
+<section class="hero small"><div class="container"><h1 data-i18n="p.h1">Le programme</h1><p class="lead" data-i18n="p.lead">Comment nous organiserons le pays et comment le gouvernement travaillera.</p></div></section>
+<section class="section"><div class="container"><div class="notice" data-i18n="p.n">Cette page est prête à recevoir votre programme : chaque bloc ci-dessous est à rédiger. Les 21 défis détaillés sont sur la page « Les 21 défis ».</div>
+<div class="grid g3" id="prog"></div></div></section>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script>
+const P=[["fa-landmark","Gouvernance et institutions","Governance and institutions"],["fa-scale-balanced","Justice et État de droit","Justice and rule of law"],["fa-shield-halved","Sécurité et défense","Security and defence"],["fa-coins","Économie et emploi des jeunes","Economy and youth employment"],["fa-graduation-cap","Éducation et formation","Education and training"],["fa-heart-pulse","Santé","Health"],["fa-road","Infrastructures et énergie","Infrastructure and energy"],["fa-wheat-awn","Agriculture et ressources naturelles","Agriculture and natural resources"],["fa-microchip","Numérique et innovation","Digital and innovation"],["fa-handshake","Diplomatie et coopération","Diplomacy and cooperation"],["fa-people-roof","Décentralisation et provinces","Decentralisation and provinces"],["fa-venus-mars","Inclusion, femmes et jeunesse","Inclusion, women and youth"]];
+I18N.extend({"p.h1":"The programme","p.lead":"How we will organise the country and how the government will work.","p.n":"This page is ready for your programme: each block below is to be written. The detailed 21 challenges are on the “21 challenges” page."});
+P.forEach((x,i)=>I18N.extend({["p.t"+i]:x[2],["p.d"+i]:"[To complete]"}));
+document.getElementById("prog").innerHTML=P.map((x,i)=>`<div class="card"><div class="ico"><i class="fa-solid ${x[0]}"></i></div><h3 data-i18n="p.t${i}">${x[1]}</h3><p data-i18n="p.d${i}">[À compléter]</p></div>`).join("");
+</script>
+</body></html>
