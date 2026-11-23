@@ -6,7 +6,7 @@ form.addEventListener('submit',async e=>{
   if(!form.checkValidity()){st.textContent=I18N.t('a.err','Merci de remplir les champs obligatoires et de cocher les deux cases.');return;}
   const d=Object.fromEntries(new FormData(form).entries());d.charte=!!d.charte;d.rgpd=!!d.rgpd;
   try{
-    const r=await fetch(window.DEFIS.ADHESION_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+    const r=await fetch(window.DEFIS.ADHESION_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},credentials:'same-origin',body:JSON.stringify(d)});
     const j=await r.json();if(!r.ok)throw new Error(j.error||'Erreur');
     form.style.display='none';document.getElementById('done').style.display='block';document.getElementById('done-num').textContent=j.numero;
   }catch(err){st.textContent=err.message;}

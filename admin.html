@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administration — Les 21 Défis</title><meta name="robots" content="noindex"><meta name="description" content="Gestion des membres."><link rel="icon" href="public/images/logo.jpg">
+<title>Administration — Les 21 Défis</title><meta name="robots" content="noindex"><meta name="description" content="Gestion."><link rel="icon" href="public/images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css?v=2"></head>
+<link rel="stylesheet" href="css/style.css?v=3"></head>
 <body data-page="admin"><header id="site-header"></header><main>
 <section class="section"><div class="container"><h2>Administration</h2>
-<div class="form" style="margin-bottom:26px;display:flex;gap:12px;flex-wrap:wrap"><input id="tok" type="password" placeholder="Code administrateur" style="flex:1;min-width:220px;padding:12px;border:1.5px solid var(--border);border-radius:12px"><button class="btn btn-red" id="go">Se connecter</button><button class="btn btn-outline" id="csv">Exporter CSV</button></div>
-<p id="err" style="color:#b3261e;font-weight:600"></p>
+<div class="form" style="margin-bottom:26px;display:flex;gap:12px;flex-wrap:wrap"><input id="tok" type="password" placeholder="Code administrateur" style="flex:1;min-width:220px;padding:12px;border:1.5px solid var(--border);border-radius:12px"><button class="btn btn-red" id="go">Se connecter</button><button class="btn btn-outline" id="csv">Exporter CSV</button></div><p id="err" style="color:#b3261e;font-weight:600"></p>
 <h3 style="margin:20px 0 10px">Membres <span id="cnt"></span></h3><div class="tablewrap"><table class="t" id="tm"></table></div>
-<h3 style="margin:30px 0 10px">Candidatures de députés</h3><div class="tablewrap"><table class="t" id="tc"></table></div></div></section>
+<h3 style="margin:30px 0 10px">Candidatures de députés</h3><div class="tablewrap"><table class="t" id="tc"></table></div>
+<h3 style="margin:30px 0 10px">Articles (média)</h3>
+<form class="form" id="af"><input type="hidden" id="aid"><div class="row"><div class="field"><label>Titre</label><input id="at" required></div><div class="field"><label>Catégorie</label><select id="ac"><option value="actualite">Actualité</option><option value="politique">Politique</option><option value="visite">Visite</option><option value="evenement">Événement</option></select></div></div>
+<div class="field"><label>Image (https://… ou public/images/…)</label><input id="ai"></div><div class="field"><label>Résumé</label><input id="ar"></div><div class="field"><label>Contenu (paragraphes séparés par une ligne vide)</label><textarea id="ax" rows="8" required></textarea></div>
+<label class="check"><input type="checkbox" id="ap"><span>Publier (visible par tous)</span></label><button class="btn btn-red" type="submit">Enregistrer l'article</button> <button type="button" class="btn btn-outline" id="anew">Nouveau</button></form>
+<div class="tablewrap" style="margin-top:20px"><table class="t" id="ta"></table></div></div></section>
 </main>
 <footer id="site-footer"></footer>
 <script src="js/i18n.js"></script>
 <script src="js/layout.js"></script>
-<script src="js/admin.js"></script>
+<script src="js/api.js"></script>
+<script src="js/provinces.js"></script><script src="js/admin.js"></script>
 </body></html>

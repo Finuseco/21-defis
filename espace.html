@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mon espace — Les 21 Défis</title><meta name="description" content="Tableau de bord du membre."><link rel="icon" href="public/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css?v=3"></head>
+<body data-page="space"><header id="site-header"></header><main>
+<section class="hero small"><div class="container"><h1>Mon espace membre</h1><p class="lead">Votre carte, votre grade, les 21 défis et vos députés.</p></div></section>
+<section class="section"><div class="container"><p id="err" style="color:#b3261e;font-weight:600"></p><div id="app" style="display:none">
+<div class="dash"><div>
+ <div class="member-card"><div class="mc-top"><span>LES 21 DÉFIS · RDC</span><img src="public/images/logo.jpg" alt=""></div><div class="mc-num" id="c-num"></div><div class="mc-name" id="c-name"></div><div class="mc-meta" id="c-meta"></div><span class="mc-status" id="c-st"></span></div>
+ <p style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-primary sm" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimer ma carte</button><button class="btn btn-outline sm" id="out">Se déconnecter</button></p>
+ <div class="card" style="margin-top:22px"><h3>Le parti en chiffres</h3><div class="stats" style="grid-template-columns:1fr 1fr;gap:10px;margin-top:10px"><div class="stat"><strong id="s-m">0</strong><span>membres</span></div><div class="stat"><strong id="s-d">0</strong><span>députés</span></div></div>
+ <p id="s-prov" style="margin-top:10px;color:var(--muted);font-size:14px"></p></div>
+ <div class="card" id="cand" style="margin-top:22px"><h3>Candidature de député</h3><p id="cand-t"></p></div>
+ <div class="card" id="prof" style="margin-top:22px;display:none"><h3>Mon profil public</h3><p style="margin-bottom:10px">Vous avez <b id="nb-abo">0</b> abonné(s).</p><form id="pf"><div class="field"><label>Photo (lien https://…)</label><input id="ph"></div><div class="field"><label>Présentation</label><textarea id="bio" rows="4"></textarea></div><button class="btn btn-red sm" type="submit">Enregistrer</button> <span id="pst"></span></form></div>
+</div><div>
+ <div class="tabs"><button class="on" data-t="defis">Les 21 défis</button><button data-t="chemin">Le chemin</button><button data-t="prov">Députés de ma province</button><button data-t="suivis">Mes abonnements</button></div>
+ <div id="t-defis"></div><div id="t-chemin" style="display:none"></div><div id="t-prov" style="display:none"></div><div id="t-suivis" style="display:none"></div>
+</div></div></div></div></section>
+</main>
+<footer id="site-footer"></footer>
+<script src="js/i18n.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/api.js"></script>
+<script src="js/espace.js"></script>
+</body></html>
