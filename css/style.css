@@ -136,3 +136,17 @@ table.t{width:100%;border-collapse:collapse;font-size:14px;background:#fff}.t th
 .article{max-width:760px;margin:0 auto}.article img{border-radius:20px;margin-bottom:24px}.article p{margin-bottom:16px;font-size:17px}
 @media(max-width:960px){.split,.dash{grid-template-columns:1fr}.split.rev>:first-child{order:0}.news{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.news{grid-template-columns:1fr}}
+
+.presidents{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.pres{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform .3s var(--ease)}.pres:hover{transform:translateY(-5px)}
+.pres img{aspect-ratio:4/5;object-fit:cover;width:100%}.pres figcaption{padding:16px}.pres h3{font-size:16px;color:var(--navy);margin:4px 0}.pres small{color:var(--muted)}
+.rang{font-size:11.5px;font-weight:800;text-transform:uppercase;letter-spacing:1px;color:var(--accent)}
+.strip{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}.strip a{position:relative;border-radius:18px;overflow:hidden;box-shadow:var(--shadow)}
+.strip img{aspect-ratio:4/5;object-fit:cover;width:100%;filter:grayscale(.15);transition:transform .4s var(--ease)}.strip a:hover img{transform:scale(1.06)}
+.strip span{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 10px;color:#fff;font-weight:800;font-size:13.5px;background:linear-gradient(transparent,rgba(11,26,82,.92))}
+@media(max-width:960px){.presidents{grid-template-columns:repeat(3,1fr)}.strip{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:600px){.presidents{grid-template-columns:1fr 1fr}.strip{grid-template-columns:1fr 1fr}}
+.brand span,.nav-links a{white-space:nowrap}
+.nav-links a{padding:9px 10px;font-size:14px}
+.nav-cta .btn{padding:10px 18px;font-size:14px}
+@media(max-width:1180px){.nav-cta .btn-outline{display:none}}
