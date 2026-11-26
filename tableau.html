@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tableau de bord député — Les 21 Défis</title><link rel="icon" href="public/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css?v=11"></head>
+<body data-page="space"><script src="js/loader.js"></script><header id="site-header"></header><main>
+<section class="hero small"><div class="container"><h1>Tableau de bord député</h1><p class="lead">Votre réseau, votre portefeuille et vos campagnes.</p></div></section>
+<section class="section"><div class="container"><p id="err" style="color:#b3261e;font-weight:600"></p><div id="app" style="display:none">
+<div class="kpis"><div class="kpi"><b id="k-ab">0</b><span>abonnés</span></div><div class="kpi usd"><b id="k-usd">0 $</b><span>solde du portefeuille</span></div><div class="kpi sms"><b id="k-sms">0</b><span>crédits SMS</span></div><div class="kpi mail"><b id="k-mail">0</b><span>crédits e-mail</span></div></div>
+<div class="tabs" id="tabs"><button class="on" data-t="res">Mon réseau</button><button data-t="camp">Campagnes</button><button data-t="wal">Portefeuille</button><button data-t="ct">Mes contacts</button><button data-t="prof">Mon profil public</button></div>
+
+<div id="t-res">
+ <div class="panel"><h3>Évolution des abonnés — 30 derniers jours</h3><div class="bars" id="bars"></div><div class="bars-l"><span id="d0"></span><span id="d1"></span></div><p class="hint" style="margin-top:8px"><b id="r-ab"></b> abonné(s) · <b id="r-par"></b> personne(s) inscrite(s) grâce à votre lien</p></div>
+ <div class="panel"><h3>Votre lien d'invitation</h3><p style="margin-bottom:12px">Partagez ce lien : toute personne qui adhère par ce lien vous suit automatiquement. C'est ainsi que vous construisez votre réseau.</p>
+  <div class="copy"><input id="l-adh" readonly><button class="btn btn-primary sm" data-copy="l-adh">Copier</button></div>
+  <p style="margin:14px 0 8px" class="hint">Votre page publique :</p><div class="copy"><input id="l-prof" readonly><button class="btn btn-outline sm" data-copy="l-prof">Copier</button></div>
+  <p style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap"><a class="btn btn-red sm" id="wa" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i> Partager sur WhatsApp</a><a class="btn btn-outline sm" id="vp" target="_blank">Voir ma page</a></p></div></div>
+
+<div id="t-camp" style="display:none">
+ <div class="panel"><h3>Nouvelle campagne</h3>
+  <div class="plans" style="grid-template-columns:1fr 1fr"><label class="plan"><input type="radio" name="canal" value="sms" checked><strong><i class="fa-solid fa-comment-sms"></i> SMS</strong><span id="c-psms"></span></label><label class="plan"><input type="radio" name="canal" value="email"><strong><i class="fa-solid fa-envelope"></i> E-mail</strong><span id="c-pmail"></span></label></div>
+  <div class="field"><label>Nom de la campagne (interne)</label><input id="c-nom" maxlength="100"></div>
+  <div class="field" id="f-sujet" style="display:none"><label>Objet du mail</label><input id="c-sujet" maxlength="150"></div>
+  <div class="field"><label>Message <small id="c-len"></small></label><textarea id="c-msg" rows="5"></textarea></div>
+  <div class="field"><label>Signature</label><select id="c-sig"><option value="depute">Mon nom (je signe ce message)</option><option value="21defis">« Les 21 Défis »</option></select></div>
+  <label style="font-weight:700;color:var(--navy);font-size:13.5px">Destinataires</label>
+  <div class="srcs" id="srcs"><label class="src"><input type="checkbox" value="abonnes" checked><span><b>Mes abonnés</b></span><em id="n-abonnes"></em></label>
+   <label class="src"><input type="checkbox" value="province"><span><b>Membres de ma province</b> <small>(ayant accepté les messages)</small></span><em id="n-province"></em></label>
+   <label class="src"><input type="checkbox" value="tous"><span><b>Tous les membres du parti</b> <small>(ayant accepté les messages)</small></span><em id="n-tous"></em></label>
+   <label class="src"><input type="checkbox" value="contacts"><span><b>Mes contacts importés</b></span><em id="n-contacts"></em></label></div>
+  <div class="quote-box" id="devis">Choisissez au moins un groupe.</div>
+  <div id="manque" style="display:none" class="field"><label>Limiter l'envoi à <small>(laisser vide = tous)</small></label><input id="c-lim" type="number" min="1" style="max-width:180px"></div>
+  <p style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-red" id="c-go"><i class="fa-solid fa-paper-plane"></i> Lancer la campagne</button><button class="btn btn-outline" id="c-buy" style="display:none">Recharger mes crédits</button></p><p id="c-st" style="font-weight:600;margin-top:12px"></p>
+  <p class="hint">Les messages partent progressivement (par petits lots), jamais tous d'un coup. Les personnes qui se désabonnent ne sont plus contactées.</p></div>
+ <div class="panel"><h3>Mes campagnes</h3><div style="overflow:auto"><table class="tb" id="camps"></table></div></div></div>
+
+<div id="t-wal" style="display:none">
+ <div class="panel"><h3>Recharger mon portefeuille</h3><p style="margin-bottom:12px">Paiement sécurisé par carte bancaire ou Mobile Money (CashPay All).</p>
+  <div class="copy"><input id="w-amt" type="number" min="5" step="1" value="20" style="max-width:160px"><button class="btn btn-red" id="w-pay"><i class="fa-solid fa-credit-card"></i> Payer</button></div><p id="w-st" style="font-weight:600;margin-top:10px"></p></div>
+ <div class="panel"><h3>Acheter des crédits</h3><p style="margin-bottom:12px">Utilise le solde de votre portefeuille. <span id="w-tarif"></span></p>
+  <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="field"><label>Crédits SMS</label><div class="copy"><input id="b-sms" type="number" min="1" value="50"><button class="btn btn-primary sm" data-buy="sms">Acheter</button></div><p class="hint" id="b-sms-p"></p></div>
+  <div class="field"><label>Crédits e-mail</label><div class="copy"><input id="b-mail" type="number" min="1" value="100"><button class="btn btn-primary sm" data-buy="email">Acheter</button></div><p class="hint" id="b-mail-p"></p></div></div><p id="b-st" style="font-weight:600"></p></div>
+ <div class="panel"><h3>Mouvements</h3><div style="overflow:auto"><table class="tb" id="mvts"></table></div></div>
+ <div class="panel"><h3>Paiements</h3><div style="overflow:auto"><table class="tb" id="pays"></table></div></div></div>
+
+<div id="t-ct" style="display:none">
+ <div class="panel"><h3>Importer mes contacts</h3><p style="margin-bottom:10px">Collez une ligne par personne : <code>Nom, téléphone, e-mail</code> (le téléphone ou l'e-mail suffit). Maximum 2000 à la fois.</p>
+  <textarea id="i-txt" rows="6" style="width:100%;padding:12px;border:1.5px solid var(--border);border-radius:12px;font:inherit" placeholder="Marie Kabeya, +243 81 234 5678, marie@exemple.cd"></textarea>
+  <label class="check" style="margin-top:12px"><input type="checkbox" id="i-ok"><span>J'atteste que ces personnes ont accepté de recevoir mes messages par SMS ou e-mail.</span></label>
+  <button class="btn btn-primary" id="i-go">Importer</button> <p id="i-st" style="font-weight:600;margin-top:10px"></p></div>
+ <div class="panel"><h3>Mes contacts <small id="ct-n" style="color:var(--muted)"></small></h3><div style="overflow:auto;max-height:420px"><table class="tb" id="cts"></table></div></div></div>
+
+<div id="t-prof" style="display:none"><form class="panel" id="pf-form">
+ <h3>Mon profil public</h3>
+ <div class="field"><label>Photo <small>(JPG, PNG ou WEBP — 2 Mo max)</small></label><input type="file" id="p-photo" accept="image/jpeg,image/png,image/webp"><p class="hint" id="p-ph"></p></div>
+ <div class="field"><label>Slogan</label><input id="p-slogan" maxlength="160"></div>
+ <div class="field"><label>Présentation</label><textarea id="p-bio" rows="5" maxlength="1500"></textarea></div>
+ <div class="row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px"><div class="field"><label>Profession / parcours</label><input id="p-prof" maxlength="120"></div>
+ <div class="field"><label>Couleur de ma page</label><select id="p-col"><option value="bleu">Bleu</option><option value="jaune">Jaune</option><option value="rouge">Rouge</option><option value="tricolore">Tricolore</option></select></div></div>
+ <div class="field"><label>Image de couverture <small>(lien https:// — facultatif)</small></label><input id="p-cov" placeholder="https://…"></div>
+ <h3 style="margin-top:8px">Mes réseaux sociaux <small style="font-weight:500;color:var(--muted)">— laissez vide pour masquer le bouton</small></h3><div id="p-soc"></div>
+ <button class="btn btn-red" type="submit">Enregistrer</button> <span id="p-st" style="font-weight:600;margin-left:10px"></span></form>
+ <div class="panel"><h3>Messages du parti</h3><label class="check"><input type="checkbox" id="p-msgs"><span>J'accepte de recevoir les messages du parti et des députés que je suis.</span></label></div>
+ <p><button class="btn btn-outline sm" id="out">Se déconnecter</button> <a class="btn btn-outline sm" href="espace.html">← Mon espace membre</a></p></div>
+</div></div></section></main>
+<footer id="site-footer"></footer>
+<script src="js/i18n.js"></script><script src="js/layout.js"></script><script src="js/api.js"></script><script src="js/tableau.js"></script></body></html>

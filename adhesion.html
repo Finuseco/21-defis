@@ -4,24 +4,34 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css?v=10"></head>
+<link rel="stylesheet" href="css/style.css?v=11"></head>
 <body data-page="adhesion"><script src="js/loader.js"></script><header id="site-header"></header><main>
 <section class="hero small"><div class="container"><h1 data-i18n="a.h1">Devenir membre</h1><p class="lead" data-i18n="a.lead">Remplissez le formulaire : vous recevez immédiatement votre numéro de membre, puis votre carte après validation.</p></div></section>
 <section class="section"><div class="container layout-2"><div>
 <form class="form" id="adhesion-form" novalidate>
- <div class="row"><div class="field"><label for="prenom" data-i18n="a.fn">Prénom</label><input id="prenom" name="prenom" required autocomplete="given-name"></div>
- <div class="field"><label for="nom" data-i18n="a.ln">Nom</label><input id="nom" name="nom" required autocomplete="family-name"></div></div>
- <div class="row"><div class="field"><label for="email" data-i18n="a.em">E-mail</label><input id="email" name="email" type="email" required autocomplete="email"></div>
- <div class="field"><label for="tel" data-i18n="a.tel">Téléphone (WhatsApp)</label><input id="tel" name="telephone" type="tel" autocomplete="tel"></div></div>
- <div class="row"><div class="field"><label for="pays" data-i18n="a.co">Pays de résidence</label><input id="pays" name="pays" value="RD Congo" autocomplete="country-name"></div>
- <div class="field"><label for="ville" data-i18n="a.ci">Ville</label><input id="ville" name="ville" autocomplete="address-level2"></div></div>
- <div class="field"><label for="province" data-i18n="a.pr">Province d'origine ou de résidence</label><select id="province" name="province"><option value="" data-i18n="a.pr0">— Choisir —</option></select></div>
+ <div id="parrain" class="note" style="display:none"></div>
+ <div class="row3"><div class="field"><label for="nom">Nom</label><input id="nom" name="nom" required autocomplete="family-name"></div>
+ <div class="field"><label for="postnom">Postnom</label><input id="postnom" name="postnom" autocomplete="additional-name"></div>
+ <div class="field"><label for="prenom" data-i18n="a.fn">Prénom</label><input id="prenom" name="prenom" required autocomplete="given-name"></div></div>
+ <div class="row"><div class="field"><label for="dn">Date de naissance <small>(18 ans minimum)</small></label><input id="dn" name="date_naissance" type="date" required autocomplete="bday"></div>
+ <div class="field"><label for="tel" data-i18n="a.tel">Téléphone (WhatsApp)</label><input id="tel" name="telephone" type="tel" required placeholder="+243 8…" autocomplete="tel"></div></div>
+ <div class="field"><label for="email" data-i18n="a.em">E-mail</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+ <div class="row"><div class="field"><label for="province" data-i18n="a.pr">Province</label><select id="province" name="province" required><option value="" data-i18n="a.pr0">— Choisir —</option></select></div>
+ <div class="field"><label for="region">Région / territoire / commune</label><input id="region" name="region" required></div></div>
+ <div class="row"><div class="field"><label for="ville" data-i18n="a.ci">Ville</label><input id="ville" name="ville" autocomplete="address-level2"></div>
+ <div class="field"><label for="pays" data-i18n="a.co">Pays de résidence</label><input id="pays" name="pays" value="RD Congo" autocomplete="country-name"></div></div>
+ <fieldset class="idbox"><legend><i class="fa-solid fa-id-card"></i> Pièce d'identité <small>— une personne ne peut adhérer qu'une seule fois</small></legend>
+ <div class="row"><div class="field"><label for="pt">Type de pièce</label><select id="pt" name="piece_type" required><option value="carte_electeur">Carte d'électeur</option><option value="carte_identite">Carte d'identité</option><option value="passeport">Passeport</option><option value="permis">Permis de conduire</option></select></div>
+ <div class="field"><label for="pn">Numéro de la pièce</label><input id="pn" name="piece_numero" required autocomplete="off"></div></div>
+ <div class="field"><label for="pf">Photo ou scan de la pièce <small>(JPG, PNG, WEBP ou PDF — 5 Mo max)</small></label><input id="pf" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required><img id="pprev" alt="" style="display:none;max-height:120px;margin-top:8px;border-radius:8px;border:1px solid #dde2f2"></div>
+ <p class="small">Votre pièce est conservée de façon chiffrée et n'est visible que par l'administration du parti, uniquement pour vérifier votre identité.</p></fieldset>
  <div class="field"><label data-i18n="a.type">Type d'adhésion</label><div class="plans">
   <label class="plan"><input type="radio" name="type" value="membre" checked><strong data-i18n="a.p1">Membre</strong><span data-i18n="a.p1d">Participer et voter</span></label>
   <label class="plan"><input type="radio" name="type" value="sympathisant"><strong data-i18n="a.p2">Sympathisant</strong><span data-i18n="a.p2d">Suivre les actions</span></label>
   <label class="plan"><input type="radio" name="type" value="benevole"><strong data-i18n="a.p3">Bénévole</strong><span data-i18n="a.p3d">Donner du temps</span></label></div></div>
  <div class="field"><label for="mdp">Mot de passe (8 caractères minimum) — pour accéder à votre espace membre</label><input id="mdp" name="mot_de_passe" type="password" minlength="8" required autocomplete="new-password"></div>
  <div class="field"><label for="msg" data-i18n="a.msg">Pourquoi rejoignez-vous le mouvement ? (facultatif)</label><textarea id="msg" name="message" rows="4"></textarea></div>
+ <label class="check"><input type="checkbox" name="accepte_messages" checked><span>J'accepte de recevoir par SMS et e-mail les messages du parti et des députés que je suis (désabonnement possible à tout moment).</span></label>
  <label class="check"><input type="checkbox" name="charte" required><span data-i18n="a.ch">J'adhère aux valeurs et aux statuts du parti Les 21 Défis.</span></label>
  <label class="check"><input type="checkbox" name="rgpd" required><span data-i18n="a.rg">J'accepte que mes données soient utilisées pour gérer mon adhésion. Je peux demander leur suppression à tout moment.</span></label>
  <button class="btn btn-red" type="submit"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="a.send">Envoyer ma demande</span></button>

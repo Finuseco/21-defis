@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Député — Les 21 Défis</title><meta name="description" content="Devenez membre des 21 Défis et recevez votre numéro de membre."><link rel="icon" href="public/images/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="css/style.css?v=11"></head>
+<body data-page="deputes"><script src="js/loader.js"></script><header id="site-header"></header><main>
+<div id="pf-err" class="container" style="padding:80px 0;display:none"><h2>Profil introuvable</h2><p>Ce député n'existe pas ou n'est plus actif. <a href="deputes.html" style="color:var(--blue);font-weight:700">Voir tous les députés</a></p></div>
+<div id="pf" style="display:none">
+<section class="pf-hero" id="hero"><div class="container"><div class="pf-photo" id="photo"></div><div>
+ <div id="tags"></div><h1 id="nom"></h1><p class="slogan" id="slogan"></p></div></div></section>
+<section class="section"><div class="container layout-2"><div>
+ <div class="panel"><h3>Présentation</h3><p id="bio" style="white-space:pre-line"></p><div class="socials" id="socials" style="margin-top:18px"></div></div>
+ <div class="panel" id="rejoindre"><h3>Rejoindre le mouvement avec <span id="rn"></span></h3><p>Adhérez au parti Les 21 Défis : vous suivrez automatiquement ce député et recevrez ses actualités.</p><p style="margin-top:14px"><a class="btn btn-red" id="join" href="#"><i class="fa-solid fa-user-plus"></i> Adhérer et suivre</a></p></div></div>
+<aside><div class="kpi" style="margin-bottom:14px"><b id="ab">0</b><span>abonné(s)</span></div>
+ <div class="panel"><button class="btn btn-primary" id="follow" style="width:100%"><i class="fa-solid fa-bell"></i> <span>Suivre</span></button><p class="hint" id="fmsg" style="margin-top:10px"></p>
+ <p style="margin-top:14px"><button class="btn btn-outline sm" id="share"><i class="fa-solid fa-share-nodes"></i> Partager ce profil</button></p></div></aside>
+</div></section></div></main>
+<footer id="site-footer"></footer>
+<script src="js/i18n.js"></script><script src="js/layout.js"></script><script src="js/api.js"></script>
+<script>
+const $=id=>document.getElementById(id),code=new URLSearchParams(location.search).get('c')||'';
+const ICON={facebook:['fa-brands fa-facebook-f','fb','Facebook'],instagram:['fa-brands fa-instagram','ig','Instagram'],x:['fa-brands fa-x-twitter','xx','X'],tiktok:['fa-brands fa-tiktok','tt','TikTok'],youtube:['fa-brands fa-youtube','yt','YouTube'],whatsapp:['fa-brands fa-whatsapp','wa','WhatsApp'],linkedin:['fa-brands fa-linkedin-in','li','LinkedIn'],telegram:['fa-brands fa-telegram','tg','Telegram'],site:['fa-solid fa-globe','','Site web']};
+let D=null,on=false;
+(async()=>{
+ try{D=await api('/api/depute?c='+encodeURIComponent(code))}catch(e){$('pf-err').style.display='block';return}
+ $('pf').style.display='block';document.title=D.prenom+' '+D.nom+' — Les 21 Défis';
+ const h=$('hero');h.classList.add(D.couleur||'bleu');if(D.couverture){h.style.backgroundImage=`url('${D.couverture.replace(/'/g,'%27')}')`;h.classList.add('cover')}
+ const ph=$('photo');if(D.photo)ph.style.backgroundImage=`url('${D.photo}')`;else ph.textContent=(D.prenom[0]||'')+(D.nom[0]||'');
+ $('nom').textContent=[D.prenom,D.postnom,D.nom].filter(Boolean).join(' ');
+ $('tags').innerHTML=`<span class="tag">${GRADE[D.grade]||'Député'}</span><span class="tag">${D.type_mandat==='national'?'National':'Provincial'}</span>${D.province?`<span class="tag"><i class="fa-solid fa-location-dot"></i> ${esc(D.province)}</span>`:''}${D.secteur?`<span class="tag">${esc(D.secteur)}</span>`:''}`;
+ $('slogan').textContent=D.slogan?'« '+D.slogan+' »':'';
+ $('bio').textContent=D.bio||'Ce député n’a pas encore rédigé sa présentation.';
+ $('socials').innerHTML=Object.entries(D.reseaux||{}).filter(([k])=>ICON[k]).map(([k,u])=>`<a class="${ICON[k][1]}" href="${esc(u)}" target="_blank" rel="noopener nofollow"><i class="${ICON[k][0]}"></i> ${ICON[k][2]}</a>`).join('');
+ $('ab').textContent=D.abonnes;$('rn').textContent=D.prenom+' '+D.nom;$('join').href='adhesion.html?d='+encodeURIComponent(D.code);
+ on=D.suivi;if(D.connecte)$('rejoindre').style.display='none';paint();
+})();
+function paint(){const b=$('follow');b.className='btn '+(on?'btn-outline':'btn-primary');b.querySelector('span').textContent=on?'Abonné':'Suivre'}
+$('follow').onclick=async()=>{
+ if(!D.connecte){location.href='adhesion.html?d='+encodeURIComponent(D.code);return}
+ try{const r=await api('/api/suivre',{numero:D.numero,suivre:!on});on=!on;$('ab').textContent=r.abonnes;paint();$('fmsg').textContent=''}catch(e){$('fmsg').textContent=e.message}};
+$('share').onclick=async()=>{const u=location.origin+'/depute.html?c='+D.code;try{if(navigator.share)await navigator.share({title:D.prenom+' '+D.nom,url:u});else{await navigator.clipboard.writeText(u);$('fmsg').textContent='Lien copié.'}}catch(e){}};
+</script></body></html>

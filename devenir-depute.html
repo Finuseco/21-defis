@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css?v=10"></head>
+<link rel="stylesheet" href="css/style.css?v=11"></head>
 <body data-page="dev"><script src="js/loader.js"></script><header id="site-header"></header><main>
 <section class="hero small"><div class="container"><h1 data-i18n="d.h1">Devenir député</h1><p class="lead" data-i18n="d.lead">Représentez le parti et votre province : voici le parcours.</p></div></section>
 <section class="section"><div class="container"><span class="eyebrow" data-i18n="d.e">Le parcours</span><h2 data-i18n="d.t">Les étapes pour candidater</h2>
@@ -15,7 +15,8 @@
  <div class="step"><h3 data-i18n="d.s4">Investiture</h3><p data-i18n="d.s4d">Le candidat retenu devient député et représente automatiquement sa province ; son profil est publié et les membres peuvent le suivre.</p></div></div>
 <div class="layout-2"><form class="form" id="dep-form" novalidate>
  <p class="notice" id="who">Connectez-vous à votre espace membre pour déposer votre candidature. <a href="connexion.html" style="color:var(--blue);font-weight:700">Se connecter</a></p>
- <div class="row"><div class="field"><label for="province" data-i18n="a.pr">Province</label><select id="province" name="province" required><option value=""></option></select></div><div class="field"><label for="circ" data-i18n="d.c">Circonscription visée</label><input id="circ" name="circonscription"></div></div>
+ <div class="field"><label>Type de candidature</label><div class="plans" style="grid-template-columns:1fr 1fr"><label class="plan"><input type="radio" name="type_mandat" value="provincial" checked><strong>Député provincial</strong><span>Assemblée de votre province</span></label><label class="plan"><input type="radio" name="type_mandat" value="national"><strong>Député national</strong><span>Assemblée nationale</span></label></div></div>
+ <div class="row"><div class="field"><label for="province" data-i18n="a.pr">Province</label><select id="province" name="province" required><option value=""></option></select></div><div class="field"><label for="circ">Secteur / circonscription visée</label><input id="circ" name="secteur" required placeholder="Ex. Gombe, secteur de…"></div></div>
  <div class="field"><label for="prof" data-i18n="d.pf">Profession / parcours</label><input id="prof" name="profession"></div>
  <div class="field"><label for="mot" data-i18n="d.m">Votre motivation (30 caractères minimum)</label><textarea id="mot" name="motivation" rows="6" required></textarea></div>
  <button class="btn btn-red" type="submit"><i class="fa-solid fa-paper-plane"></i> <span data-i18n="d.go">Déposer ma candidature</span></button><p id="st" style="margin-top:14px;font-weight:600"></p></form>

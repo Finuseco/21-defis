@@ -4,7 +4,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="css/style.css?v=10"></head>
+<link rel="stylesheet" href="css/style.css?v=11"></head>
 <body data-page="deputes"><script src="js/loader.js"></script><header id="site-header"></header><main>
 <section class="hero small"><div class="container"><h1>Nos députés</h1><p class="lead">Les représentants du parti dans les 26 provinces. Seuls les députés sont publics ; les membres abonnés peuvent les suivre.</p></div></section>
 <section class="section"><div class="container"><div class="stats" style="margin-bottom:40px"><div class="stat"><strong id="t-m">—</strong><span>membres</span></div><div class="stat"><strong id="t-d">—</strong><span>députés</span></div><div class="stat"><strong>26</strong><span>provinces</span></div><div class="stat"><strong id="t-p">—</strong><span>provinces représentées</span></div></div>
@@ -17,7 +17,7 @@
 <script src="js/api.js"></script>
 <script src="js/provinces.js"></script><script>
 let all=[],suivis=new Set(),connecte=false,cur="";
-const card=d=>`<div class="dep" style="flex-wrap:wrap"><div class="av" style="${d.photo?`background-image:url(\x27${esc(d.photo)}\x27)`:""}">${d.photo?"":esc((d.prenom[0]||"")+(d.nom[0]||""))}</div><div class="grow"><h3>${esc(d.prenom)} ${esc(d.nom)}</h3><small>${GRADE[d.grade]} · ${esc(d.province||"")}</small></div><button class="btn ${suivis.has(d.numero)?"btn-outline":"btn-red"} sm" data-s="${d.numero}">${suivis.has(d.numero)?"Abonné":"Suivre"} · <span data-ab="${d.numero}">${d.abonnes}</span></button>${d.bio?`<p style="width:100%;color:var(--muted);font-size:14px">${esc(d.bio)}</p>`:""}</div>`;
+const card=d=>`<div class="dep" style="flex-wrap:wrap"><div class="av" style="${d.photo?`background-image:url(\x27${esc(d.photo)}\x27)`:""}">${d.photo?"":esc((d.prenom[0]||"")+(d.nom[0]||""))}</div><div class="grow"><h3><a href="depute.html?c=${esc(d.code)}">${esc(d.prenom)} ${esc(d.nom)}</a></h3><small>${GRADE[d.grade]} · ${esc(d.province||"")}${d.secteur?" · "+esc(d.secteur):""}</small></div><button class="btn ${suivis.has(d.numero)?"btn-outline":"btn-red"} sm" data-s="${d.numero}">${suivis.has(d.numero)?"Abonné":"Suivre"} · <span data-ab="${d.numero}">${d.abonnes}</span></button>${d.bio?`<p style="width:100%;color:var(--muted);font-size:14px">${esc(d.bio)}</p>`:""}</div>`;
 function draw(){const rows=all.filter(d=>!cur||d.province===cur);list.innerHTML=rows.map(card).join("");vide.style.display=rows.length?"none":"block";document.querySelectorAll("#provtabs button").forEach(b=>b.classList.toggle("on",b.dataset.p===cur))}
 (async()=>{
  provtabs.innerHTML=["",...PROVINCES].map(p=>`<button data-p="${p}">${p||"Toutes"}</button>`).join("");
