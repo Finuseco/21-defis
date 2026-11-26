@@ -1,0 +1,9 @@
+{
+  "name": "21-defis",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Site et API du parti Les 21 Défis",
+  "scripts": { "start": "node api/server.js", "db": "psql \"$DATABASE_URL\" -f db/schema.sql" },
+  "engines": { "node": ">=20" },
+  "dependencies": { "pg": "^8.13.1", "nodemailer": "^6.9.16" }
+}
